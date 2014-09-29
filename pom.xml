@@ -24,7 +24,7 @@
             <artifactId>cas-client-core</artifactId>
             <version>3.1.10</version>
             <exclusions>
-                <!-- Exclude Commons Logging in favor of log4j. -->
+                <!-- Exclude Commons Logging in favor of slf4j. -->
                 <exclusion>
                     <groupId>commons-logging</groupId>
                     <artifactId>commons-logging</artifactId>
@@ -42,7 +42,7 @@
             <version>1.1</version>
         </dependency>
         
-        <!-- Tomcat related specifications. -->
+        <!-- Servlet related specifications. -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
@@ -54,6 +54,11 @@
             <artifactId>jsp-api</artifactId>
             <version>2.2</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
         </dependency>
         
         <!-- Logging -->

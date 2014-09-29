@@ -1,20 +1,22 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
     <title>Demo of Sessions Using JSP</title>
 </head>
  
 <body>
-  <h1>Web Login Demo Client Application</h1>
-  <%@ include file="cas-handler.jsp" %>
+  <h1>UH CAS Demonstration Client Application</h1>
+  <%@ include file="cas-handler.jsp" %>      
   <%
-  /* String frontPage  = request.getRequestURL().toString(); */
-  println("requestUrl: " + request.getRequestURL());  
-  String frontPage  = "http://localhost:8080/casjspdemo"; 
+  
+  String frontPage  = request.getRequestURL().toString(); 
+  println("requestUrl: " + request.getRequestURL());
+  //String frontPage  = "http://localhost:8080/casjspdemo"; 
   String insidePage = "https://localhost:8443/casjspdemo/index.jsp";
-  //final String serviceURL = URLEncoder.encode(insidePage, "UTF-8");
   final String serviceURL = insidePage;  
   final String weblogin   = "https://cas-test.its.hawaii.edu/cas";
+  final String logoutUrl = "https://cas-test.its.hawaii.edu/cas/logout";
   
   String uid = doCasLogin(request, response, weblogin, frontPage, serviceURL);
   
@@ -23,8 +25,8 @@
   if (logoff != null) {
 	  println("logging off and invalidating session");
       session.invalidate();
-      response.sendRedirect(frontPage);
-      return;  // bail here or get weird results
+      response.sendRedirect(logoutUrl);
+      return;  
   }
   
   // The main part: show the front page or the inside protected page.
@@ -34,9 +36,11 @@
       println("setting loginLink to = " + loginLink);
       println("not logged in yet; showing welcome page");
   %>
-      <p> Welcome! </p>
-      <p>Please <a href="<%= loginLink %>">login securely</a> by clicking
-          on the link.</p>
+  
+      <p>Welcome!</p>     
+      <c:set var="vLoginLink" value="<%= loginLink %>" />    
+      <p>Please <a href="<c:out value="${vLoginLink}"/>">login securely</a> 
+      by clicking on the link.</p>                  
   <%
   }
   else {  // logged in --> the inside protected page
@@ -59,6 +63,7 @@
   <%
   } // else {  // logged in --> the inside protected page
   %>
+  <c:if test="${not empty uhuid}">UH Username: ${uhuid}</c:if>
   <p>
   <%= (new java.util.Date()).toLocaleString() %>
   </p>
