@@ -1,0 +1,80 @@
+Sep 29, 2014 3:15:17 PM org.apache.catalina.core.AprLifecycleListener init
+INFO: The APR based Apache Tomcat Native library which allows optimal performance in production environments was not found on the java.library.path: /Users/duckart/Library/Java/Extensions:/Library/Java/Extensions:/Network/Library/Java/Extensions:/System/Library/Java/Extensions:/usr/lib/java:.
+Sep 29, 2014 3:15:18 PM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["http-bio-8080"]
+Sep 29, 2014 3:15:18 PM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["http-bio-8443"]
+Sep 29, 2014 3:15:18 PM org.apache.coyote.AbstractProtocol init
+INFO: Initializing ProtocolHandler ["ajp-bio-8009"]
+Sep 29, 2014 3:15:18 PM org.apache.catalina.startup.Catalina load
+INFO: Initialization processed in 1616 ms
+Sep 29, 2014 3:15:18 PM org.apache.catalina.core.StandardService startInternal
+INFO: Starting service Catalina
+Sep 29, 2014 3:15:18 PM org.apache.catalina.core.StandardEngine startInternal
+INFO: Starting Servlet Engine: Apache Tomcat/7.0.21
+Sep 29, 2014 3:15:18 PM org.apache.catalina.startup.HostConfig deployWAR
+INFO: Deploying web application archive casjspdemo.war
+Sep 29, 2014 3:15:19 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory docs
+Sep 29, 2014 3:15:19 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory examples
+Sep 29, 2014 3:15:19 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory host-manager
+Sep 29, 2014 3:15:20 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory manager
+Sep 29, 2014 3:15:20 PM org.apache.catalina.startup.HostConfig deployDirectory
+INFO: Deploying web application directory ROOT
+Sep 29, 2014 3:15:20 PM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["http-bio-8080"]
+Sep 29, 2014 3:15:20 PM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["http-bio-8443"]
+Sep 29, 2014 3:15:20 PM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["ajp-bio-8009"]
+Sep 29, 2014 3:15:20 PM org.apache.catalina.startup.Catalina start
+INFO: Server startup in 1320 ms
+2014-Sep-29 15:16:19 DEBUG doCasLogin; sessionId: C5046465B58F818596DE227ED0B6D4B6
+2014-Sep-29 15:16:19 DEBUG doCasLogin; uid from session: null
+2014-Sep-29 15:16:28 DEBUG doCasLogin; sessionId: C5046465B58F818596DE227ED0B6D4B6
+2014-Sep-29 15:16:28 DEBUG doCasLogin; ticket     : ST-514-eUR5LY7JAUxpIMQa2u7k-cas
+2014-Sep-29 15:16:28 DEBUG doCasLogin; casUrl     : https://cas-test.its.hawaii.edu/cas
+2014-Sep-29 15:16:28 DEBUG doCasLogin; insidePage : https://localhost:8443/casjspdemo/index.jsp
+2014-Sep-29 15:16:28 DEBUG org.jasig.cas.client.validation.Cas20ServiceTicketValidator - Placing URL parameters in map.
+2014-Sep-29 15:16:28 DEBUG org.jasig.cas.client.validation.Cas20ServiceTicketValidator - Calling template URL attribute map.
+2014-Sep-29 15:16:28 DEBUG org.jasig.cas.client.validation.Cas20ServiceTicketValidator - Loading custom parameters from configuration.
+2014-Sep-29 15:16:28 DEBUG org.jasig.cas.client.validation.Cas20ServiceTicketValidator - Constructing validation url: https://cas-test.its.hawaii.edu/cas/serviceValidate?ticket=ST-514-eUR5LY7JAUxpIMQa2u7k-cas&service=https%3A%2F%2Flocalhost%3A8443%2Fcasjspdemo%2Findex.jsp
+2014-Sep-29 15:16:28 DEBUG org.jasig.cas.client.validation.Cas20ServiceTicketValidator - Retrieving response from server.
+2014-Sep-29 15:16:28 DEBUG org.jasig.cas.client.validation.Cas20ServiceTicketValidator - Server response: <cas:serviceResponse xmlns:cas='http://www.yale.edu/tp/cas'>
+	<cas:authenticationSuccess>
+		<cas:user>duckart</cas:user>
+
+
+	</cas:authenticationSuccess>
+</cas:serviceResponse>
+
+2014-Sep-29 15:16:28 DEBUG doCasLogin; uh-cas uid : duckart
+2014-Sep-29 15:16:28 DEBUG doCasLogin; redirecting: https://localhost:8443/casjspdemo/index.jsp
+2014-Sep-29 15:16:28 DEBUG doCasLogin; sessionId: C5046465B58F818596DE227ED0B6D4B6
+2014-Sep-29 15:16:28 DEBUG doCasLogin; uid from session: duckart
+2014-Sep-29 15:16:31 DEBUG doCasLogout; invalidate session and logout.
+Sep 29, 2014 3:16:41 PM org.apache.catalina.core.StandardServer await
+INFO: A valid shutdown command was received via the shutdown port. Stopping the Server instance.
+Sep 29, 2014 3:16:41 PM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["http-bio-8080"]
+Sep 29, 2014 3:16:42 PM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["http-bio-8443"]
+Sep 29, 2014 3:16:43 PM org.apache.coyote.AbstractProtocol pause
+INFO: Pausing ProtocolHandler ["ajp-bio-8009"]
+Sep 29, 2014 3:16:44 PM org.apache.catalina.core.StandardService stopInternal
+INFO: Stopping service Catalina
+Sep 29, 2014 3:16:44 PM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["http-bio-8080"]
+Sep 29, 2014 3:16:44 PM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["http-bio-8443"]
+Sep 29, 2014 3:16:44 PM org.apache.coyote.AbstractProtocol stop
+INFO: Stopping ProtocolHandler ["ajp-bio-8009"]
+Sep 29, 2014 3:16:44 PM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["http-bio-8080"]
+Sep 29, 2014 3:16:44 PM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["http-bio-8443"]
+Sep 29, 2014 3:16:44 PM org.apache.coyote.AbstractProtocol destroy
+INFO: Destroying ProtocolHandler ["ajp-bio-8009"]
