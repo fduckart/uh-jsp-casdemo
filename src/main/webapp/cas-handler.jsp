@@ -2,68 +2,59 @@
 <%@ page import="org.jasig.cas.client.validation.Cas20ServiceTicketValidator" %>
 <%@ page import="org.jasig.cas.client.authentication.AttributePrincipal" %>
 <%@ page import="org.jasig.cas.client.validation.Assertion" %>
-
-<%@ page import="java.util.Map" %>
 <%@ page import="java.net.URLEncoder" %>
-<%@ page import="java.io.IOException" %>
-<%@ page import="org.xml.sax.SAXException" %>
-<%@ page import="javax.xml.parsers.ParserConfigurationException" %>
 <%!
-// A crude logging method - entry is sent to stdout.
+// A simple logging method; entry is sent to stdout.
 protected void println(String msg) {
-    String ts = (new java.util.Date()).toLocaleString();
-    System.out.println(ts + " " + msg);
+	String ts = String.format("%1$tY-%1$tb-%1$te %1$tT", new java.util.Date());
+    System.out.println(ts + " DEBUG " + msg);
 }
 
-// Return a uid (a.k.a., username); null if not logged in or
-// can't validate the service ticket from the UH CAS Service.
-protected String doCasLogin(HttpServletRequest req,
-                            HttpServletResponse res,
-                            String weblogin,
-                            String frontPage,
-                            String serviceURL)
+// Do a CAS login and save the uid (username).
+protected void doCasLogin(HttpServletRequest req,
+                          HttpServletResponse res,
+                          String casUrl,
+                          String frontPage,
+                          String insidePage)
 throws Exception {
-	
+
     HttpSession sess = req.getSession();
     String sessionId = sess.getId();
-    println("sessionId = " + sessionId);
+    println("doCasLogin; sessionId: " + sessionId);
 
-    println("this = " + this.getClass());
-    
-    String uid = (String) sess.getAttribute("uid");
-    println("uid from session = " + uid);
-    
-    // if there's a service ticket, try to validate it
     String ticket = req.getParameter("ticket");
-    println("got a ticket: " + ticket);
-                
     if (ticket != null) {
-        String validateUrl = weblogin;
-        println("validateUrl: " + validateUrl);
-        println("serviceURL : " + serviceURL);
+        // There is a service ticket, need to validate it.
+        println("doCasLogin; ticket     : " + ticket);
+        println("doCasLogin; casUrl     : " + casUrl);
+        println("doCasLogin; insidePage : " + insidePage);
 
-        TicketValidator validator = new Cas20ServiceTicketValidator(validateUrl);
-        Assertion assertion = validator.validate(ticket, serviceURL);
-        println("assertion  : " + assertion);
-                
+        TicketValidator validator = new Cas20ServiceTicketValidator(casUrl);
+        Assertion assertion = validator.validate(ticket, insidePage);
         AttributePrincipal principal = assertion.getPrincipal();
-        uid = principal.getName();
-        println("uid from uh cas: " + uid);        
-        
-        println("authN successful for " + uid);
-        
+        String uid = principal.getName();
+        println("doCasLogin; uh-cas uid : " + uid);
+
         sess.setAttribute("uid", uid);
-        req.setAttribute("uhuid", uid);
-        
-        // redirect back to me to get rid of the ticket in URL
-        println("redirecting back to " + frontPage);
-        
+        req.setAttribute("uid", uid);
+
+        // Redirect to remove the ticket from URL.
+        println("doCasLogin; redirecting: " + frontPage);
         res.sendRedirect(frontPage);
-        return null;                        
+        return;
     }
-    
-    req.setAttribute("uhuid", uid);
-    
-    return uid;
+
+    String uid = (String) sess.getAttribute("uid");
+    println("doCasLogin; uid from session: " + uid);
+    req.setAttribute("uid", uid);
+}
+
+protected void doCasLogout(HttpServletRequest req,
+                           HttpServletResponse res,
+                           String logoutUrl)
+throws Exception {
+    println("doCasLogout; invalidate session and logout.");
+    req.getSession().invalidate();
+    res.sendRedirect(logoutUrl);
 }
 %>
