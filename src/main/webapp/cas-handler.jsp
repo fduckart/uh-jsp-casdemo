@@ -6,7 +6,7 @@
 <%!
 // A simple logging method; entry is sent to stdout.
 protected void println(String msg) {
-	String ts = String.format("%1$tY-%1$tb-%1$te %1$tT", new java.util.Date());
+    String ts = String.format("%1$tY-%1$tb-%1$te %1$tT", new java.util.Date());
     System.out.println(ts + " DEBUG " + msg);
 }
 
