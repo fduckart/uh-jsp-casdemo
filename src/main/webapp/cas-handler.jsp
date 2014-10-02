@@ -10,7 +10,7 @@ protected void println(String msg) {
     System.out.println(ts + " DEBUG " + msg);
 }
 
-// Do a CAS login and save the uid (username).
+// Do a CAS login and save the username.
 protected void doCasLogin(HttpServletRequest req,
                           HttpServletResponse res,
                           String casUrl,
@@ -32,11 +32,11 @@ throws Exception {
         TicketValidator validator = new Cas20ServiceTicketValidator(casUrl);
         Assertion assertion = validator.validate(ticket, insidePage);
         AttributePrincipal principal = assertion.getPrincipal();
-        String uid = principal.getName();
-        println("doCasLogin; uh-cas uid : " + uid);
+        String username = principal.getName();
+        println("doCasLogin; uh-cas username : " + username);
 
-        sess.setAttribute("uid", uid);
-        req.setAttribute("uid", uid);
+        sess.setAttribute("username", username);
+        req.setAttribute("username", username);
 
         // Redirect to remove the ticket from URL.
         println("doCasLogin; redirecting: " + frontPage);
@@ -44,9 +44,9 @@ throws Exception {
         return;
     }
 
-    String uid = (String) sess.getAttribute("uid");
-    println("doCasLogin; uid from session: " + uid);
-    req.setAttribute("uid", uid);
+    String username = (String) sess.getAttribute("username");
+    println("doCasLogin; username from session: " + username);
+    req.setAttribute("username", username);
 }
 
 protected void doCasLogout(HttpServletRequest req,

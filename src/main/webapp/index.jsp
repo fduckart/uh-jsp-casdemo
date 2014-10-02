@@ -31,8 +31,8 @@ final String logoutLink = frontPage + "?logout";
     <h2>UH CAS Demonstration JSP</h2>
 
     <c:choose>
-        <c:when test="${not empty uid}">
-            <p>Welcome, ${uid}</p>
+        <c:when test="${not empty username}">
+            <p>Welcome, ${username}</p>
             <c:set var="vLogoutLink" value="<%= logoutLink %>" />
             <p><a href="<c:out value="${vLogoutLink}"/>">Log out</a></p>
         </c:when>
