@@ -10,7 +10,7 @@ You'll need a Java JDK to build and run the project (version 1.7).
 **Apache Tomcat**  
 Install Apache Tomcat.  
 This demonstration application was developed with version 7.0.21.  
-You will need to enabled the SSL connector in conf/server.xml
+You will need to enable the SSL connector in conf/server.xml
 
 **Source Code Library Dependencies**  
 See the build pom.xml file to see the various code dependencies.
@@ -43,7 +43,7 @@ exception in order to use localhost and UH CAS 3.
 
 **Screenshots of Typical Usage**  
 Screenshots can be found in the docs directory here:  
-https://github.com/fduckart/uh-jsp-casdemo/
+https://github.com/fduckart/uh-jsp-casdemo/tree/master/docs
 
 **Important Note**  
 This demo application uses the UH cas-test service.    
